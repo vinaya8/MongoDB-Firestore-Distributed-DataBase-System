@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>Book Management</title>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ 	</head>
+ 	<body>
+ 		<div class="container">
+ 		<br>
+ 		<br>
+ 		<br>
+ 			<div class="row">
+ 				<div class="col-sm-4">
+ 					<h3 align="center">Add a Book !</h3>
+ 					<br>
+ 					<form action="/create" method="POST">
+ 						<div class="form-group">
+						    <input type="text" class="form-control" id="name" name="name" placeholder="Book Name" required="true">
+						</div>
+						 <div class="form-group">
+							<textarea class="form-control" rows="5" id="description" name="description" placeholder="Description" required="true"></textarea>
+						</div>
+						<div class="form-group">
+						    <input type="text" class="form-control" id="author" name="author" placeholder="Author" required="true">
+						</div>
+						<div class="form-group">
+						    <input type="number" class="form-control" id="price" name="price" placeholder="Price" required="true">
+						</div>
+						<div class="form-group">
+							<select class="form-control" id="type" name="type" required="true">
+								<option value="technical">Technical</option>
+							    <option value="non-technical">Non-Technical</option>
+							</select>
+						</div>
+						<div align="center">
+							<button type="submit" class="btn btn-primary">Submit</button>  
+ 						</div>
+ 					</form>
+ 				</div>
+ 				<div class="col-sm-4">
+ 				<h3 align="center">Technical Books !</h3>
+ 				<br>
+					<div id="technical">
+	 					<ul class="list-group">
+	 						<% for(var i=0; i < techbooks.length; i++){ %>
+								<li class="list-group-item">
+								<div class="row">
+									<div class="col-sm-6">
+										<%= techbooks[i].name %>
+									</div>
+									<div class="col-sm-6">
+										<span style="float: right">
+											<form class="form-inline" action="/delete" method="POST">
+												<input type="hidden" name="id" value="<%= techbooks[i]._id %>">
+												<button type="submit" class="btn btn-danger btn-sm">Delete</button>
+											</form>
+										</span>
+									</div>
+								</div>
+								</span>
+								</li>
+							<% } %>
+						</ul>
+					</div> 
+ 				</div>
+ 				<div class="col-sm-4">
+ 				<h3 align="center">Non-Technical Books !</h3>
+ 				<br>
+					<div id="technical">
+	 					<ul class="list-group">
+	 						<% for(var i=0; i < nontechbooks.length; i++){ %>
+								<li class="list-group-item">
+								<div class="row">
+									<div class="col-sm-6">
+										<%= nontechbooks[i].name %>
+									</div>
+									<div class="col-sm-6">
+										<span style="float: right">
+											<form class="form-inline" action="/deletefirestore" method="POST">
+												<input type="hidden" name="id" value="<%= nontechbooks[i].id %>">
+												<button type="submit" class="btn btn-danger btn-sm">Delete</button>
+											</form>
+										</span>
+									</div>
+								</div>
+								</span>
+								</li>
+							<% } %>
+						</ul>
+					</div> 
+ 				</div>
+ 			</div>
+ 		</div>	
+ 	</body>
+</html>
